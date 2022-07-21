@@ -1,0 +1,262 @@
+.main_container{
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: grid;
+    grid-template-rows: 55vh 45vh ;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 1;
+}
+.backImage{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: scale(2.8);
+}
+.backImage2{
+    height: 60%;
+    transform: rotateY(315deg) scale(2,1.2);
+}
+.rectangle_div{
+    overflow: hidden;
+    position: absolute;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    justify-content: space-between;
+    height: 55vh;
+    width: 100%;
+    z-index: 2;
+    background: linear-gradient(rgba( 0, 0, 0, 0.5 ), rgba( 0, 0, 0, 0.5));
+}
+.success_div{
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    height: 100%;
+    width: 100%;
+}
+.stars{
+    width: 25vh;
+}
+.div2{
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 55vh;
+    display: grid;
+    grid-template-rows: 30% 70%;
+}
+.box{
+    width: 35vh;
+position: absolute;
+    margin-bottom: 3vh;
+    transform: rotateX(315deg) scale(1.1,1.4);
+}
+
+.div3{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.star_div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box_container{
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    float: bottom;
+    position: absolute;
+}
+.rectangle{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+}
+.header{
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+}
+.errorIcon{
+    position: absolute;
+    width: 25vh;
+    margin-bottom: 7vh;
+}
+.header_txt{
+    font-family: "Helvetica";
+    font-size: calc(4vw + 3vh );
+    color: #BEE81E;
+}
+.only_text{
+    font-family: "Helvetica";
+    font-size: 4vh ;
+    display: flex;
+    color: #BEE81E;
+}
+.shadow{
+    width: 45vh;
+    margin-bottom: 2vh;
+}
+.txt{
+    display: flex;
+    margin-left: 8px;
+    color: #BEE81E;
+}
+.dollar{
+    font-size: 2.5vh;
+
+}
+.month{
+    font-size: 2.5vh;
+    display: flex;
+    align-items: flex-end;
+}
+.box_div{
+    background: wheat;
+    width: 100%;
+    height: 100%;
+}
+
+.text_container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    background: transparent;
+    overflow: hidden;
+    grid-template-rows: 5% 40% 55%;
+    color: white;
+}
+
+.line{
+    width: 90%;
+    height: 0.5vh;
+    background: #BEE81E;
+    margin: 0 auto;
+}
+.text{
+    font-family: "Helvetica";
+    width: 80%;
+    line-height: calc(2vh + 2vw);
+    font-weight: bold;
+    font-size: calc(1.5vh + 1.5vw);
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.btn_div{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    overflow: hidden;
+}
+.div{
+    width: 100%;
+    height: 14vh;
+    display: flex;
+    flex-flow:column ;
+    justify-content: space-between;
+}
+.input_div{
+    width: 90%;
+    display: grid;
+    height: 6vh;
+    grid-template-columns: 10% 89%;
+    justify-content: space-between;
+    align-items: center;
+    background: #1A1A1A;
+    border: 3px solid #BEE81E;
+    border-radius: 35px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.search_icon{
+    width: 50%;
+    margin: 0 auto;
+}
+.input{
+    border-radius: 35px;
+    font-size: calc(1vh + 1.5vw);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    background: #1A1A1A;
+    outline: none;
+    border: none;
+    color: #555A69;
+    font-family: 'Helvetica';
+;
+}
+.btn{
+    display: grid;
+    grid-template-columns: 89% 10%;
+    justify-content: space-between;
+    align-items: center;
+    height: 6vh;
+    width: 90%;
+    border: 3px solid #BEE81E;
+    background: #BEE81E;
+    outline: none;
+    border-radius: 35px;
+    color: black;
+    font-family: "Helvetica";
+    cursor: pointer;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.btn_text{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: calc(1vh + 1.5vw);
+    font-weight: bold;
+    overflow: hidden;
+    color: black;
+    text-decoration: none;
+}
+.arrow{
+    width: 30%;
+    margin: 0 auto;
+}
+
+.title{
+    color: #BEE81E;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    display: flex;
+    font-size: calc(4vw + 2vh);
+    justify-content: center;
+}
