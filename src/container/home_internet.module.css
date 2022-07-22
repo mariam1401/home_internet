@@ -84,7 +84,6 @@ position: absolute;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    float: bottom;
     position: absolute;
 }
 .rectangle{
