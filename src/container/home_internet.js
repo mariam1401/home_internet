@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Oval} from "react-loader-spinner";
 import {useDispatch, useSelector} from "react-redux";
 import {storeNumberRequest} from "../redux/action/storeNumberAction";
 import useMediaQuery from 'use-mediaquery'
 import styles from './home_internet.module.css'
+import box from '../assets/images/Rectangle (1).svg'
+import starts from '../assets/images/Group.svg'
 import backImage from '../assets/images/Asset 2 (1).svg'
 import searchIcon from '../assets/images/Group (2).png'
 import shadowIcon from '../assets/images/Vector.svg'
 import rectangle from '../assets/images/Rectangle.png'
 import arrowIcon from '../assets/images/Asset 5.svg'
 import errorIcon from '../assets/images/Group (1).png'
-import starts from '../assets/images/Group.svg'
-import box from '../assets/images/Rectangle (1).svg'
 
 const Home_internet = ()=>{
     const screenSize = useMediaQuery('(max-width:600px)')
@@ -23,8 +23,10 @@ const Home_internet = ()=>{
     const [textBtn,setTextBtn]=useState('CHECK AVAILABILITY')
     const [title,setTitle]=useState()
     const [code,setCode]=useState()
+    const [height,setHeight]=useState(0)
     const dispatch = useDispatch()
     const {data,status}= useSelector((state)=>state.storeNumber)
+    const divREf=useRef(null)
 
     const handleBtnClick = ()=>{
         if(initial) {
@@ -35,7 +37,9 @@ const Home_internet = ()=>{
     const handleStoreNumber = (event)=>{
         setCode(event.target.value)
     }
-
+    useEffect(()=>{
+            setHeight(divREf.current.clientHeight);
+    },[])
     useEffect(()=>{
         if(click){
             if(status === 'loading'){
@@ -66,7 +70,8 @@ const Home_internet = ()=>{
     return(
         <>
         {screenSize &&
-        <div className={styles.main_container}>
+        <div className={styles.main_container} ref={divREf} style={{minHeight:height}}>
+
             <div className={styles.container}>
 
                 {!initial &&
@@ -114,7 +119,7 @@ const Home_internet = ()=>{
                 </div>
                 }
             </div>
-            <div className={styles.text_container}>
+            <div className={error ? `${styles.text_container2}` : `${styles.text_container}`}>
                 {initial ? <div className={styles.line}> </div> : <span className={styles.title}>{title}</span>}
 
                 <div className={styles.text}>
@@ -125,6 +130,11 @@ const Home_internet = ()=>{
                     {success && 'Your store will be receiving the Home Internet Router by Straight Talk'}
                     {error && 'Home Internet by Straight Talk is currently not available in your store.'}
                 </div>
+                {error &&
+                <span className={styles.text}>
+                            Please note that we are working on expanding coverage for additional stores.
+                        </span>
+                }
                 {!loading &&
                 <div className={styles.btn_div}>
                     <div className={styles.div} style={initial ? {justifyContent:'space-between'} :
@@ -142,11 +152,7 @@ const Home_internet = ()=>{
                             />
                         </div>
                         }
-                        {error &&
-                        <span className={styles.text}>
-                            Please note that we are working on expanding coverage for additional stores.
-                        </span>
-                        }
+
                     <button className={styles.btn} onClick={handleBtnClick}>
                         {initial ?
                             <span className={styles.btn_text}>{textBtn}</span>

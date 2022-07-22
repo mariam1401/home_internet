@@ -2,16 +2,23 @@
     width: 100%;
     height: 100vh;
     background: black;
-    display: grid;
-    grid-template-rows: 55vh 45vh ;
     overflow: hidden;
     position: relative;
     user-select: none;
 }
+.after{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+}
+
 
 .container{
     width: 100%;
-    height: 100%;
+    height: 55%;
     display: flex;
     overflow: hidden;
     justify-content: flex-end;
@@ -34,7 +41,7 @@
     display: grid;
     grid-template-rows: 60% 40%;
     justify-content: space-between;
-    height: 55vh;
+    height: 55%;
     width: 100%;
     z-index: 2;
     background: linear-gradient(rgba( 0, 0, 0, 0.5 ), rgba( 0, 0, 0, 0.5));
@@ -80,7 +87,7 @@ position: absolute;
 }
 .box_container{
     width: 100%;
-    height: 55vh;
+    height: 55%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -109,12 +116,13 @@ position: absolute;
 }
 .header_txt{
     font-family: "Helvetica";
-    font-size: calc(4vw + 3vh );
+    font-size: 50px;
     color: #BEE81E;
+    font-weight: bold;
 }
 .only_text{
     font-family: "Helvetica";
-    font-size: 4vh ;
+    font-size: 40px ;
     display: flex;
     color: #BEE81E;
 }
@@ -128,11 +136,11 @@ position: absolute;
     color: #BEE81E;
 }
 .dollar{
-    font-size: 2.5vh;
+    font-size: 20px;
 
 }
 .month{
-    font-size: 2.5vh;
+    font-size: 20px;
     display: flex;
     align-items: flex-end;
 }
@@ -144,13 +152,24 @@ position: absolute;
 
 .text_container{
     width: 100%;
-    height: 100%;
+    height: 45%;
     display: grid;
     background: transparent;
     overflow: hidden;
     grid-template-rows: 5% 40% 55%;
     color: white;
 }
+.text_container2{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    background: transparent;
+    overflow: hidden;
+    flex-flow: column;
+    justify-content: space-between;
+    color: white;
+}
+
 
 .line{
     width: 90%;
@@ -161,9 +180,9 @@ position: absolute;
 .text{
     font-family: "Helvetica";
     width: 80%;
-    line-height: calc(2vh + 2vw);
     font-weight: bold;
-    font-size: calc(1.5vh + 1.5vw);
+    font-size: 25px;
+    line-height: 35px;
     text-align: center;
     justify-content: center;
     margin: 0 auto;
@@ -178,7 +197,6 @@ position: absolute;
 }
 .div{
     width: 100%;
-    height: 14vh;
     display: flex;
     flex-flow:column ;
     justify-content: space-between;
@@ -186,7 +204,7 @@ position: absolute;
 .input_div{
     width: 90%;
     display: grid;
-    height: 6vh;
+    height: 50px;
     grid-template-columns: 10% 89%;
     justify-content: space-between;
     align-items: center;
@@ -202,7 +220,7 @@ position: absolute;
 }
 .input{
     border-radius: 35px;
-    font-size: calc(1vh + 1.5vw);
+    font-size: 20px;
     padding: 0;
     margin: 0;
     display: flex;
@@ -219,16 +237,16 @@ position: absolute;
     grid-template-columns: 89% 10%;
     justify-content: space-between;
     align-items: center;
-    height: 6vh;
+    height: 53px;
     width: 90%;
-    border: 3px solid #BEE81E;
+    border: none;
     background: #BEE81E;
     outline: none;
     border-radius: 35px;
     color: black;
     font-family: "Helvetica";
     cursor: pointer;
-    margin: 0 auto;
+    margin: 10px auto 0;
     overflow: hidden;
 }
 .btn_text{
@@ -240,7 +258,7 @@ position: absolute;
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-size: calc(1vh + 1.5vw);
+    font-size: 20px;
     font-weight: bold;
     overflow: hidden;
     color: black;
@@ -258,4 +276,88 @@ position: absolute;
     display: flex;
     font-size: calc(4vw + 2vh);
     justify-content: center;
+}
+@media screen and (max-width: 480px){
+    .header_txt{
+        font-size: 45px;
+    }
+    .only_text{
+        font-size: 35px;
+    }
+    .text{
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .btn{
+        height: 43px;
+    }
+    .input_div{
+        height: 40px;
+    }
+    .btn_text{
+        font-size: 15px;
+    }
+    .input{
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 420px){
+    .header_txt{
+        font-size: 40px;
+    }
+    .only_text{
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .header_txt{
+        font-size: 35px;
+    }
+    .only_text{
+        font-size: 20px;
+    }
+    .text{
+        font-size: 15px;
+    }
+    .btn{
+        height: 33px;
+    }
+    .btn_text{
+        font-size: 10px;
+    }
+    .input{
+        font-size: 10px;
+    }
+    .input_div{
+        height: 30px;
+    }
+
+}
+@media screen and (max-width: 280px){
+    .header_txt{
+        font-size: 30px;
+    }
+    .only_text{
+        font-size: 15px;
+    }
+    .btn{
+        height: 23px;
+    }
+    .input_div{
+        height: 20px;
+    }
+}
+@media screen and (max-width: 220px){
+    .header_txt{
+        font-size: 20px;
+    }
+    .btn{
+        height: 18px;
+    }
+    .input_div{
+        height: 15px;
+    }
+
 }
