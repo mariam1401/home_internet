@@ -3,7 +3,7 @@ import {Oval} from "react-loader-spinner";
 import {useDispatch, useSelector} from "react-redux";
 import {storeNumberRequest} from "../redux/action/storeNumberAction";
 import useMediaQuery from 'use-mediaquery'
-import styles from './home_internet.module.css'
+import styles from './home_internet.module.scss'
 import box from '../assets/images/Rectangle (1).svg'
 import starts from '../assets/images/Group.svg'
 import backImage from '../assets/images/Asset 2 (1).svg'
@@ -12,6 +12,11 @@ import shadowIcon from '../assets/images/Vector.svg'
 import rectangle from '../assets/images/Rectangle.png'
 import arrowIcon from '../assets/images/Asset 5.svg'
 import errorIcon from '../assets/images/Group (1).png'
+import {HiArrowNarrowLeft} from 'react-icons/hi'
+import {MdKeyboardArrowLeft} from 'react-icons/md'
+import {IoIosArrowBack} from 'react-icons/io'
+import {Link} from "react-router-dom";
+
 
 const Home_internet = ()=>{
     const screenSize = useMediaQuery('(max-width:600px)')
@@ -22,6 +27,7 @@ const Home_internet = ()=>{
     const [click,setClick]=useState(false)
     const [textBtn,setTextBtn]=useState('CHECK AVAILABILITY')
     const [title,setTitle]=useState()
+    const [clickBack,setClickBack]=useState(false)
     const [code,setCode]=useState()
     const [height,setHeight]=useState(0)
     const dispatch = useDispatch()
@@ -34,11 +40,25 @@ const Home_internet = ()=>{
             dispatch(storeNumberRequest(+code))
         }
     }
+    const handleBack=()=>{
+        setClickBack(true)
+        setInitial(true)
+        setError(false)
+        setSuccess(false)
+        setCode(null)
+        // setClickBack(false)
+    }
+    useEffect(()=>{
+        if(initial){
+            setClickBack(false)
+        }
+    },[initial])
     const handleStoreNumber = (event)=>{
         setCode(event.target.value)
     }
     useEffect(()=>{
-            setHeight(divREf.current.clientHeight);
+        setHeight(divREf.current.clientHeight);
+
     },[])
     useEffect(()=>{
         if(click){
@@ -66,107 +86,108 @@ const Home_internet = ()=>{
             }
         }
     },[click,data,status])
-
     return(
         <>
-        {screenSize &&
-        <div className={styles.main_container} ref={divREf} style={{minHeight:height}}>
+            {screenSize &&
+            <div className={clickBack ? `${styles.animationBack}` :(click && !loading) ? `${styles.animation}` : `${styles.main_container}`} ref={divREf} style={{minHeight:height}} >
+                <div className={styles.container}>
 
-            <div className={styles.container}>
-
-                {!initial &&
-                <div className={styles.success_div}>
-                    {success &&
-                    <div className={styles.star_div}>
-                        <img src={starts} alt='' className={styles.stars}/>
-                    </div>
-                    }
-                    <div className={styles.box_container}>
-                       <img src={backImage} className={styles.backImage2} alt=''/>
-                        <div className={styles.div2}>
-                            <div> </div>
-                            <div className={styles.div3}>
-                                {success &&
-                                <img src={shadowIcon} className={styles.shadow} alt=''/>
-                                }
-                                <img src={box}  className={styles.box} alt=''/>
-                                {error &&
+                    {!initial &&
+                    <div className={styles.success_div}>
+                        {success &&
+                        <div className={styles.star_div}>
+                            <img src={starts} alt='' className={styles.stars}/>
+                        </div>
+                        }
+                        <div className={styles.box_container}>
+                            <img src={backImage} className={styles.backImage2} alt=''/>
+                            <div className={styles.div2}>
+                                <Link to='/' className={styles.back_div}>
+                                <MdKeyboardArrowLeft size='55px' fill='#BEE81E' onClick={handleBack} />
+                                    <span className={styles.home}>Home</span>
+                                </Link>
+                                <div className={styles.div3}>
+                                    {success &&
+                                    <img src={shadowIcon} className={styles.shadow} alt=''/>
+                                    }
+                                    <img src={box}  className={styles.box} alt=''/>
+                                    {error &&
                                     <img src={errorIcon} alt='' className={styles.errorIcon}/>
-                                }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                 </div>
-                }
-                {initial &&
-                <img src={backImage} className={styles.backImage} alt=''/>
-                }
-                {initial &&
-                <div className={styles.rectangle_div}>
-                    <div className={styles.header}>
-                        <span className={styles.header_txt}>Unlimited</span>
-                        <span className={styles.header_txt}
-                              style={{color: 'white', fontWeight: 'bold'}}>Home Internet</span>
-                        <span className={styles.only_text}>Only
+                    }
+                    {initial &&
+                    <img src={backImage} className={styles.backImage} alt=''/>
+                    }
+                    {initial &&
+                    <div className={styles.rectangle_div}>
+                        <div className={styles.header}>
+                            <span className={styles.header_txt}>Unlimited</span>
+                            <span className={styles.header_txt}
+                                  style={{color: 'white', fontWeight: 'bold'}}>Home Internet</span>
+                            <span className={styles.only_text}>Only
                             <div className={styles.txt}>
                               <span className={styles.dollar}>$</span>
                               <span>45</span>
                               <span className={styles.month}>/mo.</span>
                             </div>
                         </span>
+                        </div>
+                        <img src={rectangle} className={styles.rectangle} alt=''/>
                     </div>
-                    <img src={rectangle} className={styles.rectangle} alt=''/>
-                </div>
-                }
-            </div>
-            <div className={error ? `${styles.text_container2}` : `${styles.text_container}`}>
-                {initial ? <div className={styles.line}> </div> : <span className={styles.title}>{title}</span>}
-
-                <div className={styles.text}>
-                    {loading &&
-                    <Oval color='#BEE81E' secondaryColor='#505050' className={styles.oval}/>
                     }
-                    {(!loading && initial) && 'Please enter your store number to see if your location qualifies for Straight Talk Home Internet'}
-                    {success && 'Your store will be receiving the Home Internet Router by Straight Talk'}
-                    {error && 'Home Internet by Straight Talk is currently not available in your store.'}
                 </div>
-                {error &&
-                <span className={styles.text}>
+                <div className={error ? `${styles.text_container2}` : `${styles.text_container}`}>
+                    {initial ? <div className={styles.line}> </div> : <span className={styles.title}>{title}</span>}
+
+                    <div className={styles.text}>
+                        {loading &&
+                        <Oval color='#BEE81E' secondaryColor='#505050' className={styles.oval}/>
+                        }
+                        {(!loading && initial) && 'Please enter your store number to see if your location qualifies for Straight Talk Home Internet'}
+                        {success && 'Your store will be receiving the Home Internet Router by Straight Talk'}
+                        {error && 'Home Internet by Straight Talk is currently not available in your store.'}
+                    </div>
+                    {error &&
+                    <span className={styles.text}>
                             Please note that we are working on expanding coverage for additional stores.
                         </span>
-                }
-                {!loading &&
-                <div className={styles.btn_div}>
-                    <div className={styles.div} style={initial ? {justifyContent:'space-between'} :
-                        success ? {justifyContent:'flex-end'} : {justifyContent:'space-between',height:'16vh'}}>
+                    }
+                    {!loading &&
+                    <div className={styles.btn_div}>
+                        <div className={styles.div} style={initial ? {justifyContent:'space-between'} :
+                            success ? {justifyContent:'flex-end'} : {justifyContent:'space-between',height:'16vh'}}>
 
-                        {initial &&
-                        <div className={styles.input_div}>
-                            <img src={searchIcon} alt='' className={styles.search_icon}/>
-                            <input
-                                className={styles.input}
-                                type='text'
-                                placeholder='SEARCH'
-                                value={code}
-                                onChange={handleStoreNumber}
-                            />
+                            {initial &&
+                            <div className={styles.input_div}>
+                                <img src={searchIcon} alt='' className={styles.search_icon}/>
+                                <input
+                                    className={styles.input}
+                                    type='text'
+                                    placeholder='SEARCH'
+                                    value={code}
+                                    onChange={handleStoreNumber}
+                                />
+                            </div>
+                            }
+
+                            <Link to='/success' className={styles.btn} onClick={handleBtnClick}>
+                                {initial ?
+                                    <span className={styles.btn_text}>{textBtn}</span>
+                                    :
+                                    <a className={styles.btn_text}
+                                       href='https://www.walmart.com/cp/straight-talk-wireless/1045119'>{textBtn}</a>
+                                }
+                                <img src={arrowIcon} alt='' className={styles.arrow}/>
+                            </Link>
                         </div>
-                        }
-
-                    <button className={styles.btn} onClick={handleBtnClick}>
-                        {initial ?
-                            <span className={styles.btn_text}>{textBtn}</span>
-                            :
-                            <a className={styles.btn_text}
-                               href='https://www.walmart.com/cp/straight-talk-wireless/1045119'>{textBtn}</a>
-                        }
-                        <img src={arrowIcon} alt='' className={styles.arrow}/>
-                    </button>
-                   </div>
-                </div>}
+                    </div>}
+                </div>
             </div>
-        </div>
-    }
-  </>
-)}
+            }
+        </>
+    )}
 export  default Home_internet
